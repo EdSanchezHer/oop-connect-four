@@ -1,10 +1,10 @@
-export default class Game {
-    constructor(playerOneName, playerTwoName) {
-        this.playerOneName = playerOneName;
-        this.playerTwoName = playerTwoName;
-    }
+export class Game {
+	constructor(playerOneName, playerTwoName) {
+		this.playerOneName = playerOneName;
+		this.playerTwoName = playerTwoName;
+	}
 
-    getName() {
-        return `${this.playerOneName} vs. ${this.playerTwoName}`;
-    }
+	getName() {
+		return `${this.playerOneName} vs. ${this.playerTwoName}`;
+	}
 }
