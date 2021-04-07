@@ -7,6 +7,23 @@ function updateUI() {
 	let gameName = document.getElementById("game-name");
 	let clickTargets = document.getElementById("click-targets");
 
+    for(let rowIndex = 0; rowIndex <=5; rowIndex++) {
+
+        for(let columnIndex = 0; columnIndex <=6; columnIndex++) {
+            let currentSquare = document.getElementById(`square-${rowIndex}-${columnIndex}`);
+            let player = game.getTokenAt(rowIndex, columnIndex);
+            currentSquare.innerHTML = "";
+            if(player === 1) {
+                let squareColor = document.createElement("div");
+                squareColor.classList("token", "black");
+            } else if (player === 2) {
+                let squareColor = document.createElement("div");
+                squareColor.classList("token", "red");
+            }
+
+        }
+    }
+
 	if (game === undefined) {
 		boardHolder.setAttribute("class", "is-invisible");
 	} else {
@@ -31,8 +48,13 @@ window.addEventListener("DOMContentLoaded", () => {
 	playerOneInput.addEventListener("keyup", newGameStatus);
 	playerTwoInput.addEventListener("keyup", newGameStatus);
 	newGameButton.addEventListener("click", updateBoard);
-	clickTargets.addEventListener("click", () => {
-		game.playInColumn();
+	clickTargets.addEventListener("click", (event) => {
+        let columnNumber;
+        let columnID = event.target.id;
+        if(columnID.startsWith("column-")) {
+            columnNumber = Number(columnID.split("-")[1]);
+        }
+        game.playInColumn(columnNumber);
 		updateUI();
 	});
 
