@@ -16,9 +16,11 @@ function updateUI() {
             if(player === 1) {
                 let squareColor = document.createElement("div");
                 squareColor.classList("token", "black");
+                currentSquare.appendChild(squareColor);
             } else if (player === 2) {
                 let squareColor = document.createElement("div");
                 squareColor.classList("token", "red");
+                currentSquare.appendChild(squareColor);
             }
 
         }
