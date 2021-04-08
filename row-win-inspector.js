@@ -7,10 +7,12 @@ export default class RowWinInspector {
 		let playerNumber = 0;
 
 		for (let i = 0; i < 6; i++) {
-			if (this.columns[0].rows[i] > 0 && this.columns[2].rows[i] > 0) {
+			let firstRowPlayer = this.columns[0].rows[i];
+			let secondRowPlayer = this.columns[2].rows[i];
+			if (firstRowPlayer > 0 && firstRowPlayer === secondRowPlayer) {
 				if (
-					this.columns[0].rows[i] === this.columns[1].rows[i] &&
-					this.columns[2].rows[i] === this.columns[3].rows[i]
+					firstRowPlayer === this.columns[1].rows[i] &&
+					secondRowPlayer === this.columns[3].rows[i]
 				) {
 					playerNumber = this.columns[0].rows[i];
 				}

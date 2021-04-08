@@ -9,6 +9,7 @@ export default class DiagonalWinInspector {
 			if (this.columns[0].rows[i] > 0 && this.columns[2].rows[i + 2] > 0) {
 				if (
 					this.columns[0].rows[i] === this.columns[1].rows[i + 1] &&
+					this.columns[1].rows[i + 1] === this.columns[2].rows[i + 2] &&
 					this.columns[2].rows[i + 2] === this.columns[3].rows[i + 3]
 				) {
 					playerNumber = this.columns[0].rows[i];
@@ -17,6 +18,7 @@ export default class DiagonalWinInspector {
 			if (this.columns[3].rows[i] > 0 && this.columns[1].rows[i + 2] > 0) {
 				if (
 					this.columns[3].rows[i] === this.columns[2].rows[i + 1] &&
+					this.columns[2].rows[i + 1] === this.columns[1].rows[i + 2] &&
 					this.columns[1].rows[i + 2] === this.columns[0].rows[i + 3]
 				) {
 					playerNumber = this.columns[0].rows[i];
