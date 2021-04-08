@@ -19,7 +19,8 @@ export default class Game {
 	getName() {
 		return `${this.playerOneName} vs. ${this.playerTwoName}`;
 	}
-	playInColumn(columnIndex) {
+
+    playInColumn(columnIndex) {
 		this.columns[columnIndex].add(this.currentPlayer);
 
 		if (this.currentPlayer === 1) {
@@ -28,7 +29,12 @@ export default class Game {
 			this.currentPlayer = 1;
 		}
 	}
-	getTokenAt(rowIndex, columnIndex) {
+
+    getTokenAt(rowIndex, columnIndex) {
 		return this.columns[columnIndex].getTokenAt(rowIndex);
+	}
+
+	isColumnFull(columnIndex) {
+        return this.columns[columnIndex].isFull();
 	}
 }

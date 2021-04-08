@@ -15,4 +15,16 @@ export default class Column {
 	getTokenAt(rowIndex) {
 		return this.rows[rowIndex];
 	}
+
+    isFull() {
+       return !this.rows.includes(null);
+
+        // let answer = true;
+        // this.rows.forEach(function(element) {
+        //     if(element === null) {
+        //         answer = false;
+        //     }
+        // });
+        // return answer;
+    }
 }

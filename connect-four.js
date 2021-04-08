@@ -15,12 +15,12 @@ function updateUI() {
 			let player = game.getTokenAt(rowIndex, columnIndex);
 			currentSquare.innerHTML = "";
 			if (player === 1) {
-				debugger;
+				//debugger;
 				let squareColor = document.createElement("div");
 				squareColor.classList.add("token", "black");
 				currentSquare.appendChild(squareColor);
 			} else if (player === 2) {
-				debugger;
+				//debugger;
 				let squareColor = document.createElement("div");
 				squareColor.classList.add("token", "red");
 				currentSquare.appendChild(squareColor);
@@ -39,6 +39,16 @@ function updateUI() {
 		} else {
 			clickTargets.classList.add("black");
 			clickTargets.classList.remove("red");
+		}
+	}
+
+	for(let i = 0; i <=6; i++) {
+		let currentCol = document.getElementById(`column-${i}`);
+
+		if (game.isColumnFull(i)) {
+			currentCol.classList.add("full");
+		} else {
+			currentCol.classList.remove("full");
 		}
 	}
 }
