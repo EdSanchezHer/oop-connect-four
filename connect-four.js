@@ -7,24 +7,26 @@ function updateUI() {
 	let gameName = document.getElementById("game-name");
 	let clickTargets = document.getElementById("click-targets");
 
-    for(let rowIndex = 0; rowIndex <=5; rowIndex++) {
-
-        for(let columnIndex = 0; columnIndex <=6; columnIndex++) {
-            let currentSquare = document.getElementById(`square-${rowIndex}-${columnIndex}`);
-            let player = game.getTokenAt(rowIndex, columnIndex);
-            currentSquare.innerHTML = "";
-            if(player === 1) {
-                let squareColor = document.createElement("div");
-                squareColor.classList("token", "black");
-                currentSquare.appendChild(squareColor);
-            } else if (player === 2) {
-                let squareColor = document.createElement("div");
-                squareColor.classList("token", "red");
-                currentSquare.appendChild(squareColor);
-            }
-
-        }
-    }
+	for (let rowIndex = 0; rowIndex <= 5; rowIndex++) {
+		for (let columnIndex = 0; columnIndex <= 6; columnIndex++) {
+			let currentSquare = document.getElementById(
+				`square-${rowIndex}-${columnIndex}`
+			);
+			let player = game.getTokenAt(rowIndex, columnIndex);
+			currentSquare.innerHTML = "";
+			if (player === 1) {
+				debugger;
+				let squareColor = document.createElement("div");
+				squareColor.classList.add("token", "black");
+				currentSquare.appendChild(squareColor);
+			} else if (player === 2) {
+				debugger;
+				let squareColor = document.createElement("div");
+				squareColor.classList.add("token", "red");
+				currentSquare.appendChild(squareColor);
+			}
+		}
+	}
 
 	if (game === undefined) {
 		boardHolder.setAttribute("class", "is-invisible");
@@ -51,12 +53,12 @@ window.addEventListener("DOMContentLoaded", () => {
 	playerTwoInput.addEventListener("keyup", newGameStatus);
 	newGameButton.addEventListener("click", updateBoard);
 	clickTargets.addEventListener("click", (event) => {
-        let columnNumber;
-        let columnID = event.target.id;
-        if(columnID.startsWith("column-")) {
-            columnNumber = Number(columnID.split("-")[1]);
-        }
-        game.playInColumn(columnNumber);
+		let columnNumber;
+		let columnID = event.target.id;
+		if (columnID.startsWith("column-")) {
+			columnNumber = Number(columnID.split("-")[1]);
+		}
+		game.playInColumn(columnNumber);
 		updateUI();
 	});
 
@@ -80,3 +82,5 @@ window.addEventListener("DOMContentLoaded", () => {
 		updateUI();
 	}
 });
+
+// If there is a player, then do the rest of the logic.
