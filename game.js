@@ -1,6 +1,6 @@
-import Column from "./column";
+import Column from "./column.js";
 
-export class Game {
+export default class Game {
 	constructor(playerOneName, playerTwoName) {
 		this.playerOneName = playerOneName;
 		this.playerTwoName = playerTwoName;
@@ -23,6 +23,6 @@ export class Game {
     }
 
     getTokenAt(rowIndex, columnIndex) {
-        return columns[columnIndex].getTokenAt[rowIndex];
+        return this.columns[columnIndex].getTokenAt[rowIndex];
     }
 }
