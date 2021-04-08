@@ -1,6 +1,7 @@
 import Column from "./column.js";
 import ColumnWinInspector from "./column-win-inspector.js";
 import RowWinInspector from "./row-win-inspector.js";
+import DiagonalWinInspector from "./diagnoal-win-inspector.js";
 
 export default class Game {
 	constructor(playerOneName, playerTwoName) {
@@ -46,7 +47,8 @@ export default class Game {
 		}
 		this.checkForTie();
 		this.checkForColumnWin();
-        this.checkForRowWin();
+		this.checkForRowWin();
+		this.checkForDiagonalWin();
 	}
 
 	checkForTie() {
@@ -75,28 +77,49 @@ export default class Game {
 		}
 	}
 
-    checkForRowWin() {
-        if (this.winnerNumber === 0) {
-            let columnsOne = this.columns.slice(0, 3);
-            let columnsTwo = this.columns.slice(1, 4);
-            let columnsThree = this.columns.slice(2, 5);
-            let columnsFour = this.columns.slice(3, 6);
+	checkForRowWin() {
+		if (this.winnerNumber === 0) {
+			let columnsOne = this.columns.slice(0, 4);
+			let columnsTwo = this.columns.slice(1, 5);
+			let columnsThree = this.columns.slice(2, 6);
+			let columnsFour = this.columns.slice(3, 7);
 
-            let colsArray = [columnsOne, columnsTwo, columnsThree, columnsFour];
+			let colsArray = [columnsOne, columnsTwo, columnsThree, columnsFour];
 
-            colsArray.every(el => {
-                let winner = new RowWinInspector(el);
-                let winnerNumber = winner.inspect();
+			colsArray.every((el) => {
+				let winner = new RowWinInspector(el);
+				let winnerNumber = winner.inspect();
 
-                if(winnerNumber === 1 || winnerNumber === 2) {
-                    this.winnerNumber = winnerNumber;
-                    return false;
-                }
-                return true;
-            });
-        }
+				if (winnerNumber === 1 || winnerNumber === 2) {
+					this.winnerNumber = winnerNumber;
+					return false;
+				}
+				return true;
+			});
+		}
+	}
 
-    }
+	checkForDiagonalWin() {
+		if (this.winnerNumber === 0) {
+			let columnsOne = this.columns.slice(0, 4);
+			let columnsTwo = this.columns.slice(1, 5);
+			let columnsThree = this.columns.slice(2, 6);
+			let columnsFour = this.columns.slice(3, 7);
+
+			let colsArray = [columnsOne, columnsTwo, columnsThree, columnsFour];
+
+			colsArray.every((el) => {
+				let winner = new DiagonalWinInspector(el);
+				let winnerNumber = winner.inspect();
+
+				if (winnerNumber === 1 || winnerNumber === 2) {
+					this.winnerNumber = winnerNumber;
+					return false;
+				}
+				return true;
+			});
+		}
+	}
 
 	getTokenAt(rowIndex, columnIndex) {
 		return this.columns[columnIndex].getTokenAt(rowIndex);
