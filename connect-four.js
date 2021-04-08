@@ -42,7 +42,7 @@ function updateUI() {
 		}
 	}
 
-	for(let i = 0; i <=6; i++) {
+	for (let i = 0; i <= 6; i++) {
 		let currentCol = document.getElementById(`column-${i}`);
 
 		if (game.isColumnFull(i)) {

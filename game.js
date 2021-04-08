@@ -19,19 +19,20 @@ export default class Game {
 	}
 
 	getName() {
-        if (this.winnerNumber === 1) {
-            return `${this.playerOneName} wins!`;
-        }
+		// debugger;
+		if (this.winnerNumber === 1) {
+			return `${this.playerOneName} wins!`;
+		}
 
-        if (this.winnerNumber === 2) {
-            return `${this.playerTwoName} wins!`;
-        }
+		if (this.winnerNumber === 2) {
+			return `${this.playerTwoName} wins!`;
+		}
 
 		if (this.winnerNumber === 3) {
 			return `${this.playerOneName} ties with ${this.playerTwoName}`;
 		}
 
-        return `${this.playerOneName} vs. ${this.playerTwoName}`;
+		return `${this.playerOneName} vs. ${this.playerTwoName}`;
 	}
 
 	playInColumn(columnIndex) {
@@ -43,7 +44,7 @@ export default class Game {
 			this.currentPlayer = 1;
 		}
 		this.checkForTie();
-        this.checkForColumnWin();
+		this.checkForColumnWin();
 	}
 
 	checkForTie() {
@@ -58,30 +59,29 @@ export default class Game {
 		}
 	}
 
-    checkForColumnWin() {
-        if(this.winnerNumber !== 0) {
-            this.columns.every((el) => {
-                let winner = new ColumnWinInspector(el);
-                if(winner === 1 || winner === 2) {
-                    this.winnerNumber = winner;
-                    return false;
-                }
-                return true;
-            });
-        }
-    }
+	checkForColumnWin() {
+		if (this.winnerNumber === 0) {
+			this.columns.every((el) => {
+				let winner = new ColumnWinInspector(el.rows);
+				let winnerNum = winner.inspect();
+				if (winnerNum === 1 || winnerNum === 2) {
+					this.winnerNumber = winnerNum;
+					return false;
+				}
+				return true;
+			});
+		}
+	}
 
 	getTokenAt(rowIndex, columnIndex) {
 		return this.columns[columnIndex].getTokenAt(rowIndex);
 	}
 
 	isColumnFull(columnIndex) {
-        if(this.winnerNumber === 1 || this.winnerNumber === 2) {
-            return true;
-        }
+		if (this.winnerNumber === 1 || this.winnerNumber === 2) {
+			return true;
+		}
 
-        return this.columns[columnIndex].isFull();
+		return this.columns[columnIndex].isFull();
 	}
-
-
 }
